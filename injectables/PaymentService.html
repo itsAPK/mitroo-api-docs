@@ -1,0 +1,1260 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Mitroo API</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">Mitroo API</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >PaymentService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/payment/payment.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#stripe" >stripe</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createPaymentUser" >createPaymentUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createPayoutSession" >createPayoutSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createSession" >createSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPaymentDetailsQuery" >getPaymentDetailsQuery</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#groupDataByTime" >groupDataByTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#handleWebhook" >handleWebhook</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#paymentDashboard" >paymentDashboard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(prisma: <a href="../injectables/PrismaService.html" target="_self">PrismaService</a>, request: Request)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/payment/payment.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>prisma</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PrismaService.html" target="_self" >PrismaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>request</td>
+                                                  
+                                                        <td>
+                                                                    <code>Request</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPaymentUser"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createPaymentUser</b></span>
+                        <a href="#createPaymentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createPaymentUser(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/payment/payment.service.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPayoutSession"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createPayoutSession</b></span>
+                        <a href="#createPayoutSession"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createPayoutSession(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/payment/payment.service.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSession"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createSession</b></span>
+                        <a href="#createSession"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createSession(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/payment/payment.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPaymentDetailsQuery"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPaymentDetailsQuery</b></span>
+                        <a href="#getPaymentDetailsQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPaymentDetailsQuery(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="264"
+                                    class="link-to-prism">src/payment/payment.service.ts:264</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupDataByTime"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>groupDataByTime</b></span>
+                        <a href="#groupDataByTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>groupDataByTime(data, timeUnit)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/payment/payment.service.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>timeUnit</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleWebhook"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>handleWebhook</b></span>
+                        <a href="#handleWebhook"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleWebhook(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/payment/payment.service.ts:289</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paymentDashboard"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>paymentDashboard</b></span>
+                        <a href="#paymentDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>paymentDashboard(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/payment/payment.service.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stripe"></a>
+                    <span class="name">
+                        <span ><b>stripe</b></span>
+                        <a href="#stripe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Stripe(process.env.STRIPE_KEY, {
+    apiVersion: &#x27;2023-10-16&#x27;,
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/payment/payment.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Inject, Injectable } from &#x27;@nestjs/common&#x27;;
+import { REQUEST } from &#x27;@nestjs/core&#x27;;
+import { Prisma } from &#x27;@prisma/client&#x27;;
+import { Request } from &#x27;express&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { getPrismaMessage } from &#x27;src/exception/exception.status&#x27;;
+import { PrismaService } from &#x27;src/prisma.service&#x27;;
+import Stripe from &#x27;stripe&#x27;;
+import * as _ from &#x27;lodash&#x27;;
+import { timestamp } from &#x27;rxjs&#x27;;
+
+@Injectable()
+export class PaymentService {
+  stripe &#x3D; new Stripe(process.env.STRIPE_KEY, {
+    apiVersion: &#x27;2023-10-16&#x27;,
+  });
+  constructor(
+    private readonly prisma: PrismaService,
+    @Inject(REQUEST) private readonly request: Request,
+  ) {}
+
+  async createSession(data: any): Promise&lt;any&gt; {
+    try {
+      if (data.paymentFor &amp;&amp; data.paymentFor &#x3D;&#x3D;&#x3D; &#x27;USER&#x27;) {
+        const { regulatorId, amount, success_url, cancel_url, courseId } &#x3D; data;
+        const user &#x3D; await this.prisma.user.findUnique({
+          where: {
+            id: regulatorId,
+          },
+        });
+        const orderId &#x3D; &#x60;MITROO_${moment().unix()}&#x60;;
+        const session &#x3D; await this.stripe.checkout.sessions.create({
+          line_items: [
+            {
+              price_data: {
+                unit_amount: amount * 100,
+                currency: &#x27;usd&#x27;,
+                product_data: {
+                  name: &#x60;User - ${user.username}&#x60;,
+                  description: &#x60;Payment for User ${user.username}&#x60;,
+                },
+              },
+              quantity: 1,
+            },
+          ],
+          mode: &#x27;payment&#x27;,
+          // payment_method_types: [&#x27;card&#x27;],
+          success_url,
+          cancel_url,
+          metadata: {
+            orderId,
+          },
+        });
+        await this.prisma.paymentLog.create({
+          data: {
+            refId: orderId,
+            amount: session.amount_total,
+            course: courseId,
+            paymentFor: &#x27;USER&#x27;,
+            regulator: regulatorId,
+            userId: this.request[&#x27;user&#x27;]?.sub,
+          },
+        });
+        return {
+          success: true,
+          message: &#x27;session generated successfully&#x27;,
+          data: session,
+        };
+      } else {
+        const { scheduleId, success_url, cancel_url } &#x3D; data;
+        const orderId &#x3D; &#x60;MITROO_${moment().unix()}&#x60;;
+
+        const items &#x3D; [];
+        for (const id of scheduleId) {
+          const schedule &#x3D; await this.prisma.courseSchedule.findUnique({
+            where: {
+              id,
+            },
+            include: {
+              course: true,
+            },
+          });
+          if (schedule) {
+            await this.prisma.paymentLog.create({
+              data: {
+                refId: orderId,
+                amount: schedule.course.price,
+                courseSchedule: [id],
+                userId: this.request[&#x27;user&#x27;]?.sub,
+                course: schedule.course.id,
+              },
+            });
+            items.push({
+              price_data: {
+                unit_amount: schedule.course.price * 100,
+                currency: &#x27;usd&#x27;,
+                product_data: {
+                  name: schedule.course.name,
+                  description: schedule.course.description,
+                  images: [schedule.course.image],
+                },
+              },
+              quantity: 1,
+            });
+          }
+        }
+        const session &#x3D; await this.stripe.checkout.sessions.create({
+          line_items: items,
+          mode: &#x27;payment&#x27;,
+          // payment_method_types: [&#x27;card&#x27;],
+          success_url,
+          cancel_url,
+          metadata: {
+            orderId,
+          },
+        });
+        return {
+          success: true,
+          message: &#x27;session generated successfully&#x27;,
+          data: session,
+        };
+      }
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          getPrismaMessage(err.code, err.meta),
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async createPayoutSession(data: any): Promise&lt;any&gt; {
+    const transfer &#x3D; await this.stripe.transfers.create({
+      amount: 1000,
+      currency: &#x27;usd&#x27;,
+      destination: &#x27;acct_1OC22nGu2Xl723aj&#x27;,
+    });
+    return transfer;
+  }
+
+  async createPaymentUser(data: any): Promise&lt;any&gt; {
+    const account &#x3D; await this.stripe.accounts.create({
+      type: &#x27;standard&#x27;,
+      country: &#x27;US&#x27;,
+      email: &#x27;jenny.rosen@example.com&#x27;,
+      // capabilities: {
+      //   card_payments: { requested: true },
+      //   transfers: { requested: true },
+      // },
+    });
+    return account;
+  }
+
+  async groupDataByTime(data, timeUnit) {
+    return _.chain(data)
+      .groupBy((item) &#x3D;&gt; {
+        const roundedTimestamp &#x3D; moment(item.timestamp);
+
+        switch (timeUnit) {
+          case &#x27;day&#x27;:
+            return roundedTimestamp.format(&#x27;YYYY-MM-DD&#x27;);
+          case &#x27;week&#x27;:
+            return roundedTimestamp.startOf(&#x27;week&#x27;).format(&#x27;YYYY-MM-DD&#x27;);
+          case &#x27;month&#x27;:
+            return roundedTimestamp.startOf(&#x27;month&#x27;).format(&#x27;YYYY-MM-DD&#x27;);
+          default:
+            return null;
+        }
+      })
+      .map((groupedData, timestamp) &#x3D;&gt; ({
+        timestamp,
+        total: groupedData.reduce((acc, obj) &#x3D;&gt; acc + obj.buyedCourse.price, 0),
+        name: moment(timestamp).format(
+          timeUnit &#x3D;&#x3D;&#x3D; &#x27;week&#x27; ? &#x27;MMMM&#x27; : timeUnit &#x3D;&#x3D;&#x3D; &#x27;month&#x27; ? &#x27;YYYY&#x27; : &#x27;dddd&#x27;,
+        ),
+        data: groupedData,
+      }))
+      .value();
+  }
+
+  async paymentDashboard(data: any): Promise&lt;any&gt; {
+    try {
+      if (this.request[&#x27;user&#x27;]?.role !&#x3D; &#x27;ADMIN&#x27;) {
+        const paymentObjs &#x3D; await this.prisma.paymentLog.findMany({
+          where: {
+            buyedCourse: {
+              userId: this.request[&#x27;user&#x27;]?.sub,
+            },
+            createdAt: {
+              gte: moment(data.from, &#x27;YYYY-MM-DD&#x27;).toDate(),
+              lte: moment(data.to, &#x27;YYYY-MM-DD&#x27;).toDate(),
+            },
+          },
+          include: {
+            user: true,
+            buyedCourse: {
+              include: {
+                createdBy: true,
+              },
+            },
+          },
+        });
+
+        if (paymentObjs.length &gt; 0) {
+          const result &#x3D; await this.groupDataByTime(paymentObjs, data.type);
+          console.log({ result });
+          return {
+            success: true,
+            message: &#x27;api executed successfully&#x27;,
+            data: result,
+          };
+        }
+      } else if (this.request[&#x27;user&#x27;]?.role &#x3D;&#x3D;&#x3D; &#x27;ADMIN&#x27;) {
+        const paymentObjs &#x3D; await this.prisma.paymentLog.findMany({
+          where: {
+            paymentFor: data.role &#x3D;&#x3D;&#x3D; &#x27;PROFESSIONAL&#x27; ? &#x27;COURSE&#x27; : &#x27;USER&#x27;,
+            createdAt: {
+              gte: data.from
+                ? moment(data.from, &#x27;YYYY-MM-DD&#x27;).toDate()
+                : moment().subtract(30, &#x27;days&#x27;).toDate(),
+              lte: data.to
+                ? moment(data.to, &#x27;YYYY-MM-DD&#x27;).toDate()
+                : moment().toDate(),
+            },
+          },
+          include: {
+            user: true,
+            buyedCourse: {
+              include: {
+                createdBy: true,
+              },
+            },
+          },
+        });
+        if (paymentObjs.length &gt; 0) {
+          const result &#x3D; await this.groupDataByTime(paymentObjs, data.type);
+          console.log({ result });
+          return {
+            success: true,
+            message: &#x27;api executed successfully&#x27;,
+            data: result,
+          };
+        }
+      }
+      return {
+        success: true,
+        message: &#x27;no data found&#x27;,
+        data: {},
+      };
+    } catch (err) {
+      console.log({ err });
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          getPrismaMessage(err.code, err.meta),
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async getPaymentDetailsQuery(data: any): Promise&lt;any&gt; {
+    try {
+      const result &#x3D; await this.prisma.paymentLog.findMany({
+        where: data,
+        include: {
+          buyedCourse: true,
+          user: true,
+        },
+      });
+      return {
+        success: true,
+        message: &#x27;details fetched successfully&#x27;,
+        data: result,
+      };
+    } catch (err) {
+      console.log({ err });
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          getPrismaMessage(err.code, err.meta),
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+  async handleWebhook(data: any) {
+    try {
+      if (data.type &#x3D;&#x3D;&#x3D; &#x27;checkout.session.completed&#x27;) {
+        const object &#x3D; data.data.object;
+        const orderId &#x3D; object.metadata.orderId;
+        console.log({ orderId });
+        await this.prisma.paymentLog.updateMany({
+          data: {
+            status: &#x27;SUCCESS&#x27;,
+          },
+          where: {
+            refId: orderId,
+          },
+        });
+        const paymentData &#x3D; await this.prisma.paymentLog.findMany({
+          where: {
+            refId: orderId,
+          },
+        });
+        if (paymentData[0].paymentFor &#x3D;&#x3D;&#x3D; &#x27;COURSE&#x27;) {
+          for (const obj of paymentData) {
+            const schedule &#x3D; await this.prisma.courseSchedule.findUnique({
+              where: {
+                id: obj.courseSchedule[0],
+              },
+              include: {
+                course: true,
+              },
+            });
+            if (schedule) {
+              // await this.prisma.userCourse.create({
+              //   data: {
+              //     userId,
+              //     courseId: schedule.course.id,
+              //     courseScheduleId: schedule.id,
+              //   },
+              // });
+              const userSpecilization &#x3D;
+                await this.prisma.userSpecilization.findFirst({
+                  where: {
+                    userId: obj.userId,
+                    specilization: {
+                      PolicyCourse: {
+                        some: {
+                          courseId: schedule.course.id,
+                        },
+                      },
+                    },
+                  },
+                  include: {
+                    specilization: true,
+                  },
+                });
+              await this.prisma.userCourse.updateMany({
+                data: {
+                  status: &#x27;INPROCESS&#x27;,
+                  isPurchased: true,
+                  specializationPolicyId: userSpecilization
+                    ? userSpecilization.specializationId
+                    : null,
+                },
+                where: {
+                  userId: obj.userId,
+                  courseId: schedule.course.id,
+                  courseScheduleId: schedule.id,
+                },
+              });
+            }
+          }
+          await this.prisma.userCart.deleteMany({
+            where: {
+              userId: paymentData[0].userId,
+            },
+          });
+        } else {
+          for (const obj of paymentData) {
+            const { course, regulator } &#x3D; obj;
+            await this.prisma.course.update({
+              data: {
+                regulatorId: regulator,
+              },
+              where: {
+                id: course,
+              },
+            });
+          }
+        }
+      }
+      await this.prisma.webhookLog.create({
+        data: {
+          response: data,
+        },
+      });
+      return { success: true };
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(
+          getPrismaMessage(err.code, err.meta),
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PaymentService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
